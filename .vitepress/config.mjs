@@ -111,12 +111,13 @@ function refreshSidebar() {
 export default withMermaid({
   vite: { plugins: [refreshSidebar()] },
   lang: "en",
+  base: "/ai-software-factory-wiki/",
   title: "AI Software Factory Wiki",
   description: "Research on AI software factories and their shared patterns.",
   srcExclude: ["CLAUDE.md", "templates/**", "research/**", "node_modules/**"],
   rewrites: { "README.md": "index.md" },
   ignoreDeadLinks: [/\/CLAUDE$/],
-  cleanUrls: true,
+  cleanUrls: false,
   lastUpdated: false,
   locales: {
     root: {

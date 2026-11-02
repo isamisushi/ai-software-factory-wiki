@@ -18,7 +18,7 @@ npm install
 npm run dev      # http://localhost:5173
 ```
 
-サイトは公開しない。VitePressでローカルに表示するだけ。サイドバーは各ページのfrontmatter（`title`、`category`）から自動で作られる。
+ローカルのURLは `/ai-software-factory-wiki/` 配下になる。`main` へのpush後、GitHub Actionsがビルドして公開する。[公開サイト](https://isamisushi.github.io/ai-software-factory-wiki/)から閲覧できる。サイドバーは各ページのfrontmatter（`title`、`category`）から自動で作られる。
 
 ## 収録状況
 
@@ -45,4 +45,4 @@ templates/        事例と用語のテンプレート
 - 主張には根拠（ファイルパス、コミット、URL）を付ける。確認できなかったことは「未確認」と書く。
 - 事例ページで見つけたパターンは用語ページに切り出し、事例と相互にリンクする。
 
-追加の手順は [CLAUDE.md](../CLAUDE.md) にまとめてある。
+追加の手順は [CLAUDE.md](https://github.com/isamisushi/ai-software-factory-wiki/blob/main/CLAUDE.md) にまとめてある。

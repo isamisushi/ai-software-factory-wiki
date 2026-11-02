@@ -7,7 +7,7 @@ const englishPath = computed(() => {
   const path = page.value.relativePath
     .replace(/^ja\//, "")
     .replace(/(^|\/)index\.md$/, "$1")
-    .replace(/\.md$/, "");
+    .replace(/\.md$/, ".html");
   return `/${path}`;
 });
 </script>

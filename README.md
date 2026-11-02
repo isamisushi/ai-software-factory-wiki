@@ -21,7 +21,9 @@ npm run dev
 ```
 
 Open the local URL that VitePress prints, usually `http://localhost:5173`.
-The site runs locally. This repository does not publish it.
+The local site uses the `/ai-software-factory-wiki/` path.
+GitHub Actions builds and publishes the site after each push to `main`.
+Read the [published wiki](https://isamisushi.github.io/ai-software-factory-wiki/).
 VitePress builds each language's sidebar from the `title` and `category` fields at the start of each page.
 
 To build the site and find broken page links, run this command from the repository directory:
@@ -62,4 +64,4 @@ When you add or update research, update both language versions. Keep the source 
 - Support claims with file paths, commits, or URLs. Mark anything that the research does not establish as unconfirmed.
 - Add patterns from case pages to the concept pages. Link the cases and concepts in both directions.
 
-[CLAUDE.md](CLAUDE.md) contains the contributor instructions.
+[CLAUDE.md](https://github.com/isamisushi/ai-software-factory-wiki/blob/main/CLAUDE.md) contains the contributor instructions.

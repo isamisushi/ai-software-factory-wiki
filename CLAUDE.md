@@ -29,7 +29,7 @@ Update both versions when research changes.
 
 ## ローカルサイト
 
-- VitePressで表示する（`npm run dev`）。公開はしない。
+- VitePressで表示する（`npm run dev`）。`main` へのpush後、GitHub ActionsでGitHub Pagesに公開する。
 - サイドバーは `.vitepress/config.mjs` が `wiki/cases/`、`wiki/concepts/`、`wiki/loops/` のfrontmatterから作る。英語版の `category` は `Input / Process / Verification / Safety / Architecture / Operations`、日本語版は `入力 / プロセス / 検証 / 安全性 / アーキテクチャ / 運用` のどれかにする。
 - ページを追加したら `npx vitepress build` を実行し、リンク切れがないことを確かめる。
 
