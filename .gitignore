@@ -1,0 +1,10 @@
+node_modules/
+.vitepress/cache/
+.vitepress/dist/
+
+# Local tools and credentials
+.serena/
+.DS_Store
+.env
+.env.*
+!.env.example

@@ -1,0 +1,40 @@
+/* Mermaid がラベルの幅を測るフォントと、実際に描くフォントをそろえる（ずれると文字が切れる） */
+/* The visible EN/JA links replace the default language menus. */
+.VPNavBarTranslations,
+.VPNavScreenTranslations,
+.VPNavBarExtra .group.translations {
+  display: none !important;
+}
+
+@media (max-width: 479px) {
+  .VPNavBarTitle .title { font-size: 14px; }
+  .VPNavBar .wrapper { padding-left: 12px; }
+  .VPNavBar .content-body { column-gap: 2px; }
+  .language-switch { margin-left: 4px !important; }
+}
+
+.mermaid,
+.mermaid svg,
+.mermaid foreignObject div,
+.mermaid .nodeLabel,
+.mermaid .edgeLabel {
+  font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif !important;
+}
+
+/* VitePress の行の高さ（1.7）が図の中に効くと、折り返した最後の行がはみ出して切れる */
+.mermaid foreignObject div,
+.mermaid foreignObject span,
+.mermaid foreignObject p {
+  line-height: 1.5 !important;
+}
+
+/* 狭い画面では図だけをスクロールし、ラベルを縮めすぎない。 */
+.mermaid {
+  overflow-x: auto;
+}
+
+@media (max-width: 639px) {
+  .mermaid svg {
+    min-width: 600px;
+  }
+}
