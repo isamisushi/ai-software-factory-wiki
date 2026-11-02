@@ -11,6 +11,10 @@ AIによる「ソフトウェアファクトリー」の事例と、事例に共
 - [ループで読む](wiki/loops/index.md): 事例ごとのループを1つずつ図にしたもの
 - [比較表](wiki/compare.md): 事例を同じ観点で並べた表
 
+## 参考リンク
+
+[Awesome Software Factories](https://github.com/varun1505/awesome-software-factories) は、ソフトウェアファクトリーのプロジェクトと関連資料をまとめたリンク集。追加の事例や調査資料を探すときの参考になる。
+
 ## ローカルで見る
 
 ```sh

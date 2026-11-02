@@ -11,6 +11,10 @@ The website opens in English. Use the EN / JA links in the header to read the sa
 - [Loops](wiki/loops/index.md): Separate diagrams for each repeated process.
 - [Comparison](wiki/compare.md): The cases compared across the same topics.
 
+## References
+
+[Awesome Software Factories](https://github.com/varun1505/awesome-software-factories) collects software factory projects and related resources. Use it to find more cases and sources for research.
+
 ## View the site locally
 
 Run these commands from the repository directory:

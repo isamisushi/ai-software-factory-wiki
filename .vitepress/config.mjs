@@ -51,6 +51,7 @@ function buildNav(lang) {
     { text: text.concepts, link: `${prefix}/wiki/concepts` },
     { text: text.loops, link: `${prefix}/wiki/loops/` },
     { text: text.compare, link: `${prefix}/wiki/compare` },
+    { text: "GitHub", link: "https://github.com/isamisushi/ai-software-factory-wiki" },
   ];
 }
 
