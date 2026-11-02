@@ -6,35 +6,80 @@ Keep matching Japanese pages under `ja/index.md` and `ja/wiki/`.
 Use the same file names, facts, evidence links, and explicit anchor IDs in both languages.
 Update both versions when research changes.
 
-## 事例を追加する手順
+## Add a case
 
-1. OSSならソースをcloneして直接読む（scratchpadにclone）。最初に読むのは CLAUDE.md / AGENTS.md、`.claude/skills/`、CIの設定、レビュープロンプト、CONTRIBUTING。
-2. 活動量を測る（例: `gh search prs --repo <repo> --merged --merged-at ">=<日付>"`、コミットの `Co-authored-by`）。
-3. `templates/case.md` をもとに `wiki/cases/<slug>.md` を作る。調査日とコミットを必ず書く。
-4. 新しいパターンを見つけたら、`templates/concept.md` をもとに `wiki/concepts/<slug>.md` を作る。既存のパターンにあたるなら、その用語ページの「事例での実装」表に行を足し、`seen_in` を更新する。
-5. `wiki/loops/<slug>.md` にループの図を描く（下の「ループの図」を参照）。
-6. 次の4つを更新する: `wiki/index.md`、`wiki/concepts.md`（「事例」列）、`wiki/compare.md`（列を追加）、`README.md` の収録状況。
+1. For open-source projects, clone the source into a temporary research directory.
+   Read the source directly.
+   Start with CLAUDE.md, AGENTS.md, `.claude/skills/`, CI configuration, review prompts, and CONTRIBUTING.
+   CI runs automated tests and other tasks after changes.
+2. Measure project activity through merged pull requests and commit authorship.
+   A pull request proposes code changes for review.
+   With GitHub CLI authentication available, use `gh search prs --repo <repo> --merged --merged-at ">=<date>"`.
+   Read the `Co-authored-by` entries in commit messages.
+3. Create `wiki/cases/<slug>.md` from `templates/case.md`.
+   A slug is the short name used in a path.
+   Include the research date and the commit that you studied.
+4. If you find a new pattern, create `wiki/concepts/<slug>.md` from `templates/concept.md`.
+   If the pattern already exists, add a row to its table of case implementations.
+   Update its `seen_in` field.
+5. Draw the repeated processes in `wiki/loops/<slug>.md`.
+   Follow the rules under “Loop diagrams” below.
+6. Update `wiki/index.md`, the case column in `wiki/concepts.md`, and the coverage counts in `README.md`.
+   Add the case to `wiki/compare.md`.
+   Apply the same changes to the matching Japanese pages.
 
-## ループの図
+## Loop diagrams
 
-- Mermaidの `flowchart` で描く。1つの図には1つのループだけを描く。
-- 中に別のループがあるときは、中身を描かずに参照の箱 `[["ループX: 名前"]]:::loopref` を置き、別の図で説明する。
-- ページの最初に、名前だけの関係の地図と、「回る単位 / 評価と戻り先 / 抜ける条件」の表を置く。包含・実行順序・フィードバックを区別し、根拠のない入れ子を描かない。
-- 全体の工程、反復実行、評価で作り方を変える修正ループを区別する。ループ名と分解が調査者の整理なら明記する。
-- コードで強制する条件、手順書の指示、推論、未確認を分ける。停止・回数・費用の上限も調べ、確認できなければ補わない。
-- ソースのコメントと実装が違う場合は実装を優先する。根拠は調査対象コミットに固定したリンクを添える。
-- 子ループの参照箱の下には、該当図へのMarkdownリンクを置く。見出しには安定したID（例: `{#loop-b}`）を付ける。
-- 色の分け方は `wiki/loops/index.md` の凡例に合わせる。人間の判断は `:::human`、機械のゲートは六角形 `{{"..."}}:::gate`、差し戻しは点線 `-.->` で描く。
-- 長いラベルは `<br/>` で区切る。描いたら、ブラウザで文字が切れていないか確かめる。
+- Use Mermaid `flowchart` diagrams.
+  Draw one loop per diagram.
+  A loop repeats work until a condition ends it.
+- For a nested loop, use a reference box such as `[["Loop X: Name"]]:::loopref`.
+  Explain that loop in a separate diagram.
+- Start each page with a map that shows loop names and relationships.
+  Add a table with the repeated unit, evaluation and return destination, and exit condition.
+  Distinguish containment, execution order, and feedback.
+  Draw nested relationships only when evidence supports them.
+- Distinguish the overall workflow, repeated execution, and repair loops that change the process after evaluation.
+  If the researcher chose the loop names or divisions, state this explicitly.
+- Separate conditions enforced by code, written instructions, inferences, and unconfirmed behavior.
+  Investigate stop conditions and limits on attempts and cost.
+  If evidence does not establish a limit, leave it unconfirmed.
+- If source comments conflict with the implementation, use the implementation as evidence.
+  Link evidence to the specific commit that you studied.
+- Below each nested loop reference, add a Markdown link to its diagram.
+  Give headings stable IDs, such as `{#loop-b}`.
+- Follow the color legend in `wiki/loops/index.md`.
+  Use `:::human` for human decisions.
+  Use hexagons, `{{"..."}}:::gate`, for automated conditions that control progress.
+  Use dotted arrows, `-.->`, for returns to earlier steps.
+- Split long labels with `<br/>`.
+  After drawing, make sure that the browser shows all label text without clipping.
 
-## ローカルサイト
+## Local preview and publication
 
-- VitePressで表示する（`npm run dev`）。`main` へのpush後、GitHub ActionsでGitHub Pagesに公開する。
-- サイドバーは `.vitepress/config.mjs` が `wiki/cases/`、`wiki/concepts/`、`wiki/loops/` のfrontmatterから作る。英語版の `category` は `Input / Process / Verification / Safety / Architecture / Operations`、日本語版は `入力 / プロセス / 検証 / 安全性 / アーキテクチャ / 運用` のどれかにする。
-- ページを追加したら `npx vitepress build` を実行し、リンク切れがないことを確かめる。
+Run `npm run dev` from the repository directory to preview the site.
+GitHub Actions builds and publishes the site to GitHub Pages after each push to `main`.
 
-## 書き方
+The `.vitepress/config.mjs` file builds sidebars from page metadata in `wiki/cases/`, `wiki/concepts/`, and `wiki/loops/`.
+Page metadata appears between `---` lines at the start of each file.
+Use one of these values for the `category` field in each language:
 
-- 主張には根拠（ファイルパス、URL）を付ける。確認できなかったことは「未確認」と書く。
-- 会社側の数字（トークン削減率など）は「会社側の主張」と明記する。
-- slugは英小文字とハイフン。リンクは相対パスで書く（GitHub上でそのまま読めるようにする）。
+| English | Japanese |
+| --- | --- |
+| Input | 入力 |
+| Process | プロセス |
+| Verification | 検証 |
+| Safety | 安全性 |
+| Architecture | アーキテクチャ |
+| Operations | 運用 |
+
+After adding pages, run `npm run build` from the repository directory.
+Make sure that the build reports no broken page links.
+
+## Writing rules
+
+- Support claims with file paths or URLs.
+  If evidence does not establish a fact, mark it as unconfirmed.
+- Label company figures, such as reported token savings, as company claims.
+- Use lowercase English letters and hyphens in slugs.
+  Use relative links so that readers can follow them on GitHub.
